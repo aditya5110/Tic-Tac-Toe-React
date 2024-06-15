@@ -1,8 +1,8 @@
 import React from "react";
 import {useState} from 'react';
 
-export default function Player(props) {
-    const [playerName, setPlayerName] = useState(props.name)
+export default function Player({name, symbol, isActive}) {
+    const [playerName, setPlayerName] = useState(name)
     const [isEditing,setisEditing] = useState(false)
     const handleOnClick = () => {
         setisEditing((editing) => !editing);
@@ -20,10 +20,10 @@ export default function Player(props) {
         editText = "Save"
     }
     return (
-    <li>
+    <li className={isActive?"active":undefined}>
       <span className="player">
         {editablePlayerName}
-        <span className="player-symbol">{props.symbol}</span>
+        <span className="player-symbol">{symbol}</span>
       </span>
       <button onClick={handleOnClick}>{editText}</button>
     </li>
